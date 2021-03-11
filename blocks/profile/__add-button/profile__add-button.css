@@ -7,4 +7,10 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: #000;
+    transition: opacity .3s;
+}
+
+.profile__add-button:hover {
+    opacity: .6;
+    cursor: pointer;
 }
