@@ -8,3 +8,17 @@
     white-space: nowrap;
     overflow: hidden;
 }
+
+@media (max-width: 1023px) {
+    .element__title {
+        max-width: 300px;
+        margin-bottom: 31px;
+    }
+}
+
+@media (max-width: 767px) {
+    .element__title {
+        max-width: 200px;
+        margin-bottom: 31px;
+    }
+}

@@ -9,3 +9,10 @@
     font-weight: 400;
     padding-bottom: 10px;
 }
+
+@media (max-width: 479px) {
+    .popup__input-about {
+        width: 238px;
+        margin: 0 22px 45px;
+    }
+}

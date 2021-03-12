@@ -5,3 +5,9 @@
     font-weight: 400;
     color: #545454;
 }
+
+@media (max-width: 948px) {
+    .footer__copyrigth {
+        margin-left: 19px;
+    }
+}
