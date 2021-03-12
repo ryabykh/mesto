@@ -5,3 +5,16 @@
     font-weight: 500;
     color: #fff;
 }
+
+@media (max-width: 767px) {
+    .profile__name {
+        margin: 22.5px 0 16px;
+    }
+}
+
+@media (max-width: 479px) {
+    .profile__name {
+        font-size: 27px;
+        line-height: 32px;
+    }
+}

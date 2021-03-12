@@ -1,0 +1,13 @@
+.footer__copyrigth {
+    margin: 0 0 60px;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #545454;
+}
+
+@media (max-width: 948px) {
+    .footer__copyrigth {
+        margin-left: 19px;
+    }
+}
