@@ -6,12 +6,12 @@ const formElement = document.querySelector('.popup__container');
 let nameInputPopup = document.querySelector('.popup__input-name');
 let aboutInputPopup = document.querySelector('.popup__input-about');
 let nameProfile = document.querySelector('.profile__name');
-let postProfile = document.querySelector('.profile__post');
+let aboutProfile = document.querySelector('.profile__about');
 
 function openPopup() {
     popup.classList.add('popup_opened');
     nameInputPopup.value = nameProfile.textContent;
-    aboutInputPopup.value = postProfile.textContent;
+    aboutInputPopup.value = aboutProfile.textContent;
 }
 
 function closePopup() {
@@ -21,7 +21,7 @@ function closePopup() {
 function formSubmitHandler(evt) {
     evt.preventDefault();
     nameProfile.textContent = nameInputPopup.value;
-    postProfile.textContent = aboutInputPopup.value;
+    aboutProfile.textContent = aboutInputPopup.value;
     popup.classList.remove('popup_opened');
 }
 

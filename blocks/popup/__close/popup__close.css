@@ -9,3 +9,18 @@
     opacity: .6;
     cursor: pointer;
 }
+
+@media (max-width: 767px) {
+    .popup__close {
+        right: -15px;
+        top: -64px;
+    }
+}
+
+@media (max-width: 479px) {
+    .popup__close {
+        width: 40px;
+        right: 0px;
+        top: -56px;
+    }
+}

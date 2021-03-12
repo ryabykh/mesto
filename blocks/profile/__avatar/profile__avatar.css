@@ -4,3 +4,9 @@
     margin: 3.75px 26.25px 3.75px 0;
     border-radius: 50%;
 }
+
+@media (max-width: 767px) {
+    .profile__avatar {
+        margin: 0;
+    }
+}
