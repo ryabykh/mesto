@@ -8,6 +8,19 @@ let aboutInputPopup = document.querySelector('.popup__input-about');
 let nameProfile = document.querySelector('.profile__name');
 let aboutProfile = document.querySelector('.profile__about');
 
+let likeImage = document.querySelectorAll('.element__like');
+
+for (let i = 0; i < likeImage.length; i += 1) {
+    const currentImage = likeImage[i];
+    currentImage.addEventListener('click', clickLike);
+}
+
+function clickLike(event) {
+    const parentLike = event.target.parentElement;
+    const like = parentLike.querySelector('.element__like');
+    like.classList.toggle('element__like_active');
+}
+
 function openPopup() {
     popup.classList.add('popup_opened');
     nameInputPopup.value = nameProfile.textContent;
