@@ -1,12 +1,10 @@
-@media (max-width: 948px) {
-    .header__logo {
-        margin-left: 19px;
-    }
+.header__logo{
+  margin: 0 0 41px 0;
 }
 
-@media (max-width: 479px) {
+
+@media (max-width: 948px) {
     .header__logo {
-        width: 104px;
-        margin-left: 27px;
+        margin: 0 0 31px 19px;
     }
 }
