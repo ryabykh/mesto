@@ -1,16 +1,8 @@
 .elements-list__item {
     list-style: none;
     min-width: 282px;
-    min-height: 361px;
     background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
-}
-
-@media (max-width: 1023px) {
-    .elements-list__item {
-        min-width: 100%;
-        height: 100%;
-    }
 }

@@ -18,9 +18,13 @@
         <section class="profile">
             <img src="./images/avatar.png" alt="аватар" class="profile__avatar">
             <div class="profile-info">
-                <p class="profile__name">Жак-Ив Кусто</p>
+                <div class="profile-info__wrap">
+                  <p class="profile__name">Жак-Ив Кусто</p>
+                  <div class="profile__edit-button"></div>
+                </div>
+
                 <p class="profile__about">Исследователь океана</p>
-                <div class="profile__edit-button"></div>
+
             </div>
             <button class="profile__add-button"></button>
         </section>
@@ -30,43 +34,55 @@
                 <li class="elements-list__item">
                     <div class="element">
                         <img src="./images/elements/moscow.jpg" alt="Москва" class="element__image">
-                        <h2 class="element__title">Москва</h2>
-                        <div class="element__like"></div>
+                        <div class="element__wrap">
+                          <h2 class="element__title">Москва</h2>
+                          <div class="element__like"></div>
+                        </div>
                     </div>
                 </li>
                 <li class="elements-list__item">
                     <div class="element">
                         <img src="./images/elements/piter.jpg" alt="Санкт-Петербург" class="element__image">
-                        <h2 class="element__title">Санкт-Петербург</h2>
-                        <div class="element__like"></div>
+                        <div class="element__wrap">
+                          <h2 class="element__title">Санкт-Петербург</h2>
+                          <div class="element__like"></div>
+                        </div>
                     </div>
                 </li>
                 <li class="elements-list__item">
                     <div class="element">
                         <img src="./images/elements/volgograd.jpg" alt="Волгоград" class="element__image">
-                        <h2 class="element__title">Волгоград</h2>
-                        <div class="element__like"></div>
+                        <div class="element__wrap">
+                          <h2 class="element__title">Волгоград</h2>
+                          <div class="element__like"></div>
+                        </div>
                     </div>
                 </li>
                 <li class="elements-list__item">
                     <div class="element">
                         <img src="./images/elements/adler.jpg" alt="Адлер" class="element__image">
-                        <h2 class="element__title">Адлер</h2>
-                        <div class="element__like"></div>
+                        <div class="element__wrap">
+                          <h2 class="element__title">Адлер</h2>
+                          <div class="element__like"></div>
+                        </div>
                     </div>
                 </li>
                 <li class="elements-list__item">
                     <div class="element">
                         <img src="./images/elements/osetia.jpg" alt="Северная Осетия" class="element__image">
-                        <h2 class="element__title">Северная Осетия</h2>
-                        <div class="element__like"></div>
+                        <div class="element__wrap">
+                          <h2 class="element__title">Северная Осетия</h2>
+                          <div class="element__like"></div>
+                        </div>
                     </div>
                 </li>
                 <li class="elements-list__item">
                     <div class="element">
                         <img src="./images/elements/pskov2.jpg" alt="Псков" class="element__image">
-                        <h2 class="element__title">Псков</h2>
-                        <div class="element__like"></div>
+                        <div class="element__wrap">
+                          <h2 class="element__title">Псков</h2>
+                          <div class="element__like"></div>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -76,7 +92,6 @@
             <p class="footer__copyrigth">© 2020 Mesto Russia</p>
         </footer>
         <div class="popup">
-            <div class="popup__cover"></div>
             <form class="popup__container">
                 <p class="popup__title">Редактировать профиль</p>
                 <input type="text" class="popup__input-name">
@@ -84,6 +99,7 @@
                 <input type="submit" class="popup__save" value="Сохранить">
                 <img src="./images/Close.svg" alt="закрыть" class="popup__close">
             </form>
+            <!-- <div class="popup__cover"></div> -->
         </div>
     </div>
     <script src="./scripts/index.js"></script>
