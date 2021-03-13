@@ -1,7 +1,6 @@
 const popup = document.querySelector('.popup');
 const openPopupBtn = document.querySelector('.profile__edit-button');
 const closePopupBtn = document.querySelector('.popup__close');
-const closeCover = document.querySelector('.popup__cover');
 const formElement = document.querySelector('.popup__container');
 let nameInputPopup = document.querySelector('.popup__input-name');
 let aboutInputPopup = document.querySelector('.popup__input-about');
@@ -43,7 +42,5 @@ openPopupBtn.addEventListener('click', function() {
 })
 
 closePopupBtn.addEventListener('click', function() { closePopup() });
-
-closeCover.addEventListener('click', function() { closePopup() });
 
 formElement.addEventListener('submit', formSubmitHandler);

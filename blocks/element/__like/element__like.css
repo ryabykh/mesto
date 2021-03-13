@@ -2,10 +2,7 @@
     width: 22px;
     height: 19px;
     background-image: url("../../../images/like.svg");
-    position: absolute;
-    bottom: 30px;
-    right: 20px;
-    transition: opacity .3s;
+    transition: opacity .1s;
 }
 
 .element__like:hover {

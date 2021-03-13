@@ -1,0 +1,17 @@
+.profile-info__wrap{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 767px) {
+  .profile-info__wrap {
+      margin: 22.5px 0 14px 30px;
+  }
+}
+@media (max-width: 479px) {
+  .profile-info__wrap {
+      margin-left: 28px;
+  }
+}
