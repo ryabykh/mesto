@@ -10,6 +10,8 @@
     transition: opacity .3s;
     box-sizing: border-box;
     padding: 0;
+    outline: none;
+    border-radius: 2px;
 }
 
 .profile__add-button:hover {
@@ -21,5 +23,10 @@
     .profile__add-button {
         margin: 0 19px;
         width: 282px;
+    }
+}
+@media (max-width: 479px) {
+    .profile__add-button {
+      background-image: url("../../../images/addButton320.png");
     }
 }
