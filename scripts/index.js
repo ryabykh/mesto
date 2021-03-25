@@ -1,4 +1,4 @@
-// модальное окно редактирования профиля
+// редактирование профиля
 
 let popup = document.querySelector('.popup');
 let openPopupBtn = document.querySelector('.profile__edit-button');
@@ -19,7 +19,7 @@ function closePopup() {
     popup.classList.remove('popup_opened');
 }
 
-function formSubmitHandler(evt) {
+function formSubmitProfile(evt) {
     evt.preventDefault();
     nameProfile.textContent = userName.value;
     aboutProfile.textContent = userAbout.value;
@@ -30,9 +30,9 @@ openPopupBtn.addEventListener('click', openPopup);
 
 closePopupBtn.addEventListener('click',closePopup);
 
-formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', formSubmitProfile);
 
-// модальное окно добавления карточек
+// добавление карточек
 
 let popupMesto = document.querySelector('.popup-mesto');
 let openPopupMestoBtn = document.querySelector('.profile__add-button');
@@ -49,18 +49,19 @@ function closePopupMesto() {
   popupMesto.classList.remove('popup-mesto_opened');
 }
 
-function formSubmitHandler(evt) {
+function formSubmitMesto(evt) {
   evt.preventDefault();
-  closePopup();
+  addCard();
+  closePopupMesto();
 }
 
 openPopupMestoBtn.addEventListener('click', openPopupMesto);
 
 closePopupMestoBtn.addEventListener('click',closePopupMesto);
 
-formElementMesto.addEventListener('submit', formSubmitHandler);
+formElementMesto.addEventListener('submit', formSubmitMesto);
 
-// добавление карточек
+// добавление карточек из массива
 
 const initialCards = [
   {
@@ -90,14 +91,25 @@ const initialCards = [
 ];
 
 initialCards.forEach( function({name, link}){
-  addCard(name,link,);
+  addCardFromBox(name,link,);
 });
 
-function addCard(name, link){
+function addCardFromBox(name, link){
   const cardTemplate = document.querySelector('#cards').content;
   const cardList = document.querySelector('.elements-list');
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
   cardElement.querySelector('.element__title').textContent = name;
   cardElement.querySelector('.element__image').src = link;
   cardList.append(cardElement);
+}
+
+// добавление карточек из формы
+
+function addCard(name, link){
+  const cardTemplate = document.querySelector('#cards').content;
+  const cardList = document.querySelector('.elements-list');
+  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+  cardElement.querySelector('.element__title').textContent = mestoName.value;
+  cardElement.querySelector('.element__image').src = mestoLink.value;
+  cardList.prepend(cardElement);
 }
