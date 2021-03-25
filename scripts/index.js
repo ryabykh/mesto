@@ -53,6 +53,7 @@ function formSubmitMesto(evt) {
   evt.preventDefault();
   addCard();
   closePopupMesto();
+  countLike();
 }
 
 openPopupMestoBtn.addEventListener('click', openPopupMesto);
@@ -103,6 +104,8 @@ function addCardFromBox(name, link){
   cardList.append(cardElement);
 }
 
+
+
 // добавление карточек из формы
 
 function addCard(name, link){
@@ -112,4 +115,25 @@ function addCard(name, link){
   cardElement.querySelector('.element__title').textContent = mestoName.value;
   cardElement.querySelector('.element__image').src = mestoLink.value;
   cardList.prepend(cardElement);
+  return likeImage = document.querySelectorAll('.element__like');
 }
+
+// Лайк карточки
+
+let likeImage = document.querySelectorAll('.element__like');
+
+countLike();
+function countLike(){
+  for (let i = 0; i < likeImage.length; i += 1) {
+    const currentImage = likeImage[i];
+    currentImage.addEventListener('click', clickLike);
+}
+}
+
+function clickLike(event) {
+    const parentLike = event.target.parentElement;
+    const like = parentLike.querySelector('.element__like');
+    like.classList.toggle('element__like_active');
+}
+
+
