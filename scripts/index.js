@@ -1,3 +1,5 @@
+// модальное окно редактирования профиля
+
 let popup = document.querySelector('.popup');
 let openPopupBtn = document.querySelector('.profile__edit-button');
 let closePopupBtn = document.querySelector('.popup__close');
@@ -29,6 +31,36 @@ openPopupBtn.addEventListener('click', openPopup);
 closePopupBtn.addEventListener('click',closePopup);
 
 formElement.addEventListener('submit', formSubmitHandler);
+
+// модальное окно добавления карточек
+
+let popupMesto = document.querySelector('.popup-mesto');
+let openPopupMestoBtn = document.querySelector('.profile__add-button');
+let closePopupMestoBtn = document.querySelector('.popup-mesto__close');
+let formElementMesto = document.querySelector('.popup-mesto__container');
+let mestoName = document.getElementById('mestoName');
+let mestoLink = document.getElementById('mestoLink');
+
+function openPopupMesto() {
+  popupMesto.classList.add('popup-mesto_opened');
+}
+
+function closePopupMesto() {
+  popupMesto.classList.remove('popup-mesto_opened');
+}
+
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  closePopup();
+}
+
+openPopupMestoBtn.addEventListener('click', openPopupMesto);
+
+closePopupMestoBtn.addEventListener('click',closePopupMesto);
+
+formElementMesto.addEventListener('submit', formSubmitHandler);
+
+// добавление карточек
 
 const initialCards = [
   {

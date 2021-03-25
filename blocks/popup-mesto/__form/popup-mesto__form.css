@@ -1,0 +1,12 @@
+.popup-mesto__container {
+  width: 430px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+}
+
+@media (max-width: 479px) {
+  .popup-mesto__container {
+      width: 282px;
+  }
+}
