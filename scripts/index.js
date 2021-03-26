@@ -3,11 +3,17 @@
 let popup = document.querySelector('.popup');
 let openPopupBtn = document.querySelector('.profile__edit-button');
 let closePopupBtn = document.querySelector('.popup__close');
-let formElement = document.querySelector('.popup__container');
+let formEditProfile = document.querySelector('.popup__container');
 let userName = document.getElementById('userName');
 let userAbout = document.getElementById('userAbout');
 let nameProfile = document.querySelector('.profile__name');
 let aboutProfile = document.querySelector('.profile__about');
+
+openPopupBtn.addEventListener('click', openPopup);
+
+closePopupBtn.addEventListener('click',closePopup);
+
+formEditProfile.addEventListener('submit', formSubmitProfile);
 
 function openPopup() {
     popup.classList.add('popup_opened');
@@ -26,43 +32,8 @@ function formSubmitProfile(evt) {
     closePopup();
 }
 
-openPopupBtn.addEventListener('click', openPopup);
-
-closePopupBtn.addEventListener('click',closePopup);
-
-formElement.addEventListener('submit', formSubmitProfile);
 
 // добавление карточек
-
-let popupMesto = document.querySelector('.popup-mesto');
-let openPopupMestoBtn = document.querySelector('.profile__add-button');
-let closePopupMestoBtn = document.querySelector('.popup-mesto__close');
-let formElementMesto = document.querySelector('.popup-mesto__container');
-let mestoName = document.getElementById('mestoName');
-let mestoLink = document.getElementById('mestoLink');
-
-function openPopupMesto() {
-  popupMesto.classList.add('popup-mesto_opened');
-}
-
-function closePopupMesto() {
-  popupMesto.classList.remove('popup-mesto_opened');
-}
-
-function formSubmitMesto(evt) {
-  evt.preventDefault();
-  addCard();
-  closePopupMesto();
-  countLike();
-}
-
-openPopupMestoBtn.addEventListener('click', openPopupMesto);
-
-closePopupMestoBtn.addEventListener('click',closePopupMesto);
-
-formElementMesto.addEventListener('submit', formSubmitMesto);
-
-// добавление карточек из массива
 
 const initialCards = [
   {
@@ -91,49 +62,66 @@ const initialCards = [
   }
 ];
 
+let popupMesto = document.querySelector('.popup-mesto');
+let openPopupMestoBtn = document.querySelector('.profile__add-button');
+let closePopupMestoBtn = document.querySelector('.popup-mesto__close');
+let formNewMesto = document.querySelector('.popup-mesto__container');
+let mestoName = document.getElementById('mestoName');
+let mestoLink = document.getElementById('mestoLink');
+;
+
 initialCards.forEach( function({name, link}){
-  addCardFromBox(name,link,);
+  addCard(name, link);
 });
 
-function addCardFromBox(name, link){
-  const cardTemplate = document.querySelector('#cards').content;
-  const cardList = document.querySelector('.elements-list');
-  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  cardElement.querySelector('.element__title').textContent = name;
-  cardElement.querySelector('.element__image').src = link;
-  cardList.append(cardElement);
+openPopupMestoBtn.addEventListener('click', openPopupMesto);
+
+closePopupMestoBtn.addEventListener('click',closePopupMesto);
+
+formNewMesto.addEventListener('submit', formSubmitMesto);
+
+function openPopupMesto() {
+  popupMesto.classList.add('popup-mesto_opened');
 }
 
+function closePopupMesto() {
+  popupMesto.classList.remove('popup-mesto_opened');
+}
 
-
-// добавление карточек из формы
+function formSubmitMesto(evt) {
+  evt.preventDefault();
+  addCard(mestoName.value, mestoLink.value);
+  closePopupMesto();
+}
 
 function addCard(name, link){
   const cardTemplate = document.querySelector('#cards').content;
   const cardList = document.querySelector('.elements-list');
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  cardElement.querySelector('.element__title').textContent = mestoName.value;
-  cardElement.querySelector('.element__image').src = mestoLink.value;
+
+  cardElement.querySelector('.element__title').textContent = name;
+  cardElement.querySelector('.element__image').src = link;
   cardList.prepend(cardElement);
-  return likeImage = document.querySelectorAll('.element__like');
+
+  const likeButton = document.querySelector('.element__like');
+  const removeButton = document.querySelector('.element__remove');
+  likeButton.addEventListener('click', () => {likeButton.classList.toggle('element__like_active')})
+  removeButton.addEventListener('click', ()=> {const itemCard = removeButton.closest('.element');
+  itemCard.remove()});
+
+  const imageItem = document.querySelector('.element__image');
+  const imageCard = document.querySelector('.popup-image');
+  const closeImage = document.querySelector('.popup-image__close');
+  const image = document.querySelector('.popup-image__img');
+  const imageTitle = document.querySelector('.popup-image__title');
+
+  imageItem.addEventListener('click', imageClick);
+  function imageClick(event){
+    image.src= link;
+    imageTitle.textContent = name;
+    imageCard.classList.add('popup-image_opened');
+    closeImage.addEventListener('click', () => {imageCard.classList.remove('popup-image_opened')});
+
+  }
 }
-
-// Лайк карточки
-
-let likeImage = document.querySelectorAll('.element__like');
-
-countLike();
-function countLike(){
-  for (let i = 0; i < likeImage.length; i += 1) {
-    const currentImage = likeImage[i];
-    currentImage.addEventListener('click', clickLike);
-}
-}
-
-function clickLike(event) {
-    const parentLike = event.target.parentElement;
-    const like = parentLike.querySelector('.element__like');
-    like.classList.toggle('element__like_active');
-}
-
 
