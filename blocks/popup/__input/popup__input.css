@@ -15,6 +15,17 @@
   margin-bottom: 45px;
 }
 
+.popup__input::-webkit-input-placeholder{
+  color: #c4c4c4;
+}
+.popup__input::-moz-placeholder{
+  color: #c4c4c4;
+}
+.popup__input::-ms-input-placeholder{
+  color: #c4c4c4;
+}
+
+
 @media (max-width: 479px) {
   .popup__input {
       width: 238px;
