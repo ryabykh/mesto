@@ -29,7 +29,7 @@ const cardList = document.querySelector('.elements-list');
 
 
 //popup
-const popupProfile = document.querySelector('.popup');
+const popupProfile = document.querySelector('.popup-profile');
 const popupMesto = document.querySelector('.popup-mesto');
 const openImage = document.querySelector('.popup-image');
 
@@ -141,3 +141,22 @@ function formSubmitMesto(evt) {
     document.querySelector('.popup-mesto__form').reset();
     closePopup(popupMesto);
 }
+
+
+function setEventListenersOverlay (){
+  const formList = Array.from(document.querySelectorAll('.popup'))
+  formList.forEach(function (formElement){
+    window.addEventListener('click', function(evt){
+      if(evt.target.classList.contains('popup')){
+        closePopup(formElement)
+      }
+    });
+    window.addEventListener('keydown', function(evt){
+      if(evt.key === 'Escape'){
+        closePopup(formElement)
+      }
+    })
+  });
+}
+
+setEventListenersOverlay ()
