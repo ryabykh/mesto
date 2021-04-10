@@ -46,13 +46,16 @@ const closeImage = document.querySelector('.popup-image__close');
 const formEditProfile = document.querySelector('.popup__container');
 const formNewMesto = document.querySelector('.popup-mesto__container');
 
-//data
+//form-input
 const userName = document.getElementById('userName');
 const userAbout = document.getElementById('userAbout');
-const nameProfile = document.querySelector('.profile__name');
-const aboutProfile = document.querySelector('.profile__about');
 const mestoName = document.getElementById('mestoName');
 const mestoLink = document.getElementById('mestoLink');
+
+//data
+const nameProfile = document.querySelector('.profile__name');
+const aboutProfile = document.querySelector('.profile__about');
+
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
