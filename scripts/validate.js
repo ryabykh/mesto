@@ -1,7 +1,6 @@
 function isValid(formElement, inputElement) {
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.validationMessage)
-        console.log(inputElement.validationMessage)
     } else {
         hideInputError(formElement, inputElement)
     }
