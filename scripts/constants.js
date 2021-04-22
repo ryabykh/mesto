@@ -1,5 +1,5 @@
 //template cards
-const cardTemplate = document.getElementById('cards').content;
+//const cardTemplate = document.getElementById('cards').content;
 const cardList = document.querySelector('.elements-list');
 
 //popup
