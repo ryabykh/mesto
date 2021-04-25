@@ -1,4 +1,5 @@
 //template cards
+const templateCards = document.querySelector('.template-elements');
 const cardList = document.querySelector('.elements-list');
 
 //popup
@@ -6,18 +7,19 @@ const popupProfile = document.querySelector('.popup-profile');
 const popupMesto = document.querySelector('.popup-mesto');
 const openImage = document.querySelector('.popup-image');
 
+
 //open popup buttons
-const openPopupBtn = document.querySelector('.profile__edit-button');
-const openPopupMestoBtn = document.querySelector('.profile__add-button');
+const openProfileBtn = document.querySelector('.profile__edit-button');
+const openMestoBtn = document.querySelector('.profile__add-button');
 
 //close popup buttons
-const closePopupBtn = document.querySelector('.popup__close');
-const closePopupMestoBtn = document.querySelector('.popup-mesto__close');
-const closeImage = document.querySelector('.popup-image__close');
+const closeProfileBtn = document.querySelector('.popup-profile__close');
+const closeMestoBtn = document.querySelector('.popup-mesto__close');
+const closeImageBtn = document.querySelector('.popup-image__close');
 
 //form
-const formEditProfile = document.querySelector('.popup__container');
-const formNewMesto = document.querySelector('.popup-mesto__container');
+const formEditProfile = document.querySelector('.popup-profile__form');
+const formNewMesto = document.querySelector('.popup-mesto__form');
 
 //form-input
 const userName = document.getElementById('userName');
@@ -28,6 +30,13 @@ const mestoLink = document.getElementById('mestoLink');
 //data profile
 const nameProfile = document.querySelector('.profile__name');
 const aboutProfile = document.querySelector('.profile__about');
+
+//data Card
+const imageTitle = document.querySelector('.popup-image__title');
+const imageImg = document.querySelector('.popup-image__img');
+
+//key
+const escape = 'Escape'
 
 // form selectors
 const selectors = {

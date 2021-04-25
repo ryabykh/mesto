@@ -1,16 +1,18 @@
+import {openPopup, closePopup} from './index.js'
+
 export default class Card {
-  constructor(name, link) {
+  constructor(name, link, templateCards) {
     this._name = name;
     this._link = link;
+    this._templateCards = templateCards;
+
   }
 
   _getTemlate() {
-    const cardElement = document
-      .querySelector('#cards')
+    const cardElement = this._templateCards
       .content
       .querySelector('.element')
       .cloneNode(true);
-
     return cardElement;
   };
 
@@ -23,35 +25,27 @@ export default class Card {
   }
 
   _setEventListeners() {
+    const likeButton = this._element.querySelector('.element__like');
     this._element.querySelector('.element__image').addEventListener('click', () => {
       this._openImage(openImage)
     });
     this._element.querySelector('.element__remove').addEventListener('click', () => {
       this._element.remove()
+      this._element=null
     })
-    this._element.querySelector('.element__like').addEventListener('click', () => {
-      this._element.querySelector('.element__like').classList.toggle('element__like_active')
+    likeButton.addEventListener('click', () => {
+      likeButton.classList.toggle('element__like_active')
     })
-    closeImage.addEventListener('click', () => {
-      this._closeImage(openImage)
+    closeImageBtn.addEventListener('click', () => {
+      closePopup(openImage)
     });
   }
 
   _openImage(popup) {
-    document.querySelector('.popup-image__img').src = this._link;
-    document.querySelector('.popup-image__title').textContent = this._name;
-    document.querySelector('.popup-image__img').alt = this._name;
-    popup.classList.add('popup_opened')
+    imageImg.src = this._link;
+    imageTitle.textContent = this._name;
+    imageImg.alt = this._name;
+    openPopup(popup);
     document.addEventListener('keydown', this._closePressEsc)
-  }
-
-  _closePressEsc = evt =>
-    (evt.key === 'Escape') &&
-    this._closeImage(openImage)
-
-
-  _closeImage(popup) {
-    popup.classList.remove('popup_opened')
-    document.removeEventListener('keydown', this._closePressEsc)
   }
 }
