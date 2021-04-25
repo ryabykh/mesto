@@ -1,56 +1,52 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
-
 initialCards.forEach((item) => {
-  const card = new Card(item.name, item.link);
-  const cardElement = card.generateCard();
-  cardList.append(cardElement)
+  cardList.append(createCard(item.name, item.link))
 })
 
-const formList = Array.from(document.querySelectorAll(selectors.formSelector));
-formList.forEach((item)=>{
-  const formElement = new FormValidator (selectors, item);
-  const formCheckValid = formElement.enableValidation(item);
-})
+const formMesto = new FormValidator(selectors, formNewMesto);
+formMesto.enableValidation();
+const formProfile = new FormValidator(selectors, formEditProfile);
+formProfile.enableValidation();
 
-openPopupBtn.addEventListener('click', function () {
+openProfileBtn.addEventListener('click', function () {
   openPopup(popupProfile);
+  disableButton(popupProfile);
   fillPopupProfile();
 });
 
-closePopupBtn.addEventListener('click', function () {
-  closePopup(popupProfile)
+closeProfileBtn.addEventListener('click', function () {
+  closePopup(popupProfile);
 });
 
-formEditProfile.addEventListener('submit', formSubmitProfile);
+formEditProfile.addEventListener('submit', submitFormProfile);
 
-openPopupMestoBtn.addEventListener('click', function () {
-  openPopup(popupMesto)
+openMestoBtn.addEventListener('click', function () {
+  openPopup(popupMesto);
+  disableButton(popupMesto);
 });
 
-closePopupMestoBtn.addEventListener('click', function () {
+closeMestoBtn.addEventListener('click', function () {
   closePopup(popupMesto)
 });
 
-formNewMesto.addEventListener('submit', formSubmitMesto);
+formNewMesto.addEventListener('submit', submitFormMesto);
 
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_opened');
+  enableEscapeListener();
+}
+
+function disableButton(popup) {
   const buttonElement = popup.querySelector(selectors.submitButtonSelector)
   buttonElement.setAttribute('disabled', true);
   buttonElement.classList.add(selectors.inactiveButtonClass);
-  function closePressEscape(evt) {
-    if (evt.key === 'Escape') {
-      closePopup(popup);
-      window.removeEventListener('keydown', closePressEscape)
-    }
-  }
-  window.addEventListener('keydown', closePressEscape);
 }
 
-function closePopup(popup) {
+export function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePressEscape);
 }
 
 function fillPopupProfile() {
@@ -58,35 +54,52 @@ function fillPopupProfile() {
   userAbout.value = aboutProfile.textContent;
 }
 
-function formSubmitProfile(evt) {
+function submitFormProfile(evt) {
   evt.preventDefault();
   nameProfile.textContent = userName.value;
   aboutProfile.textContent = userAbout.value;
   closePopup(popupProfile);
 }
 
-function formSubmitMesto(evt) {
+function submitFormMesto(evt) {
   evt.preventDefault();
-  const card = new Card(mestoName.value, mestoLink.value);
-  const cardElement = card.generateCard();
-  addCard(cardList, cardElement);
-  document.querySelector('.popup-mesto__form').reset();
+  addCard(cardList, createCard(mestoName.value, mestoLink.value));
+  formNewMesto.reset();
   closePopup(popupMesto);
+}
+
+function createCard(name, link) {
+  const card = new Card(name, link, templateCards);
+  const cardElement = card.generateCard();
+  return cardElement;
 }
 
 function addCard(container, element) {
   container.prepend(element);
 }
 
+function makePopupActive(){
+  const popupOpened = document.querySelector('.popup_opened');
+  return popupOpened;
+}
+
+function closePressEscape(evt) {
+  if (evt.key === escape) {
+    closePopup(makePopupActive());
+  }
+}
+
+function enableEscapeListener() {
+  document.addEventListener('keydown', closePressEscape);
+}
+
 function setEventListenersOverlay() {
-  const formList = Array.from(document.querySelectorAll('.popup'))
-  formList.forEach(function (formElement) {
-    window.addEventListener('click', function (evt) {
-      if (evt.target.classList.contains('popup')) {
-        closePopup(formElement)
-      }
-    });
+  window.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(makePopupActive());
+    }
   });
+
 };
 
 setEventListenersOverlay()
