@@ -1,4 +1,7 @@
-import {openPopup, closePopup} from './index.js'
+import {
+  openPopup,
+  closePopup
+} from './utils.js'
 
 export default class Card {
   constructor(name, link, templateCards) {
@@ -31,7 +34,7 @@ export default class Card {
     });
     this._element.querySelector('.element__remove').addEventListener('click', () => {
       this._element.remove()
-      this._element=null
+      this._element = null
     })
     likeButton.addEventListener('click', () => {
       likeButton.classList.toggle('element__like_active')
