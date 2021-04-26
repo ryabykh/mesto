@@ -1,5 +1,9 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import {
+  openPopup,
+  closePopup
+} from './utils.js'
 
 initialCards.forEach((item) => {
   cardList.append(createCard(item.name, item.link))
@@ -33,20 +37,10 @@ closeMestoBtn.addEventListener('click', function () {
 
 formNewMesto.addEventListener('submit', submitFormMesto);
 
-export function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  enableEscapeListener();
-}
-
 function disableButton(popup) {
   const buttonElement = popup.querySelector(selectors.submitButtonSelector)
   buttonElement.setAttribute('disabled', true);
   buttonElement.classList.add(selectors.inactiveButtonClass);
-}
-
-export function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePressEscape);
 }
 
 function fillPopupProfile() {
@@ -78,28 +72,15 @@ function addCard(container, element) {
   container.prepend(element);
 }
 
-function makePopupActive(){
-  const popupOpened = document.querySelector('.popup_opened');
-  return popupOpened;
-}
-
-function closePressEscape(evt) {
-  if (evt.key === escape) {
-    closePopup(makePopupActive());
-  }
-}
-
-function enableEscapeListener() {
-  document.addEventListener('keydown', closePressEscape);
-}
-
 function setEventListenersOverlay() {
-  window.addEventListener('click', function (evt) {
-    if (evt.target.classList.contains('popup')) {
-      closePopup(makePopupActive());
-    }
+  const formList = Array.from(document.querySelectorAll('.popup'))
+  formList.forEach(function (formElement) {
+    formElement.addEventListener('click', function (evt) {
+      if (evt.target.classList.contains('popup')) {
+        closePopup(formElement)
+      }
+    });
   });
-
 };
 
 setEventListenersOverlay()
