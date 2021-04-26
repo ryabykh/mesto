@@ -49,6 +49,5 @@ export default class Card {
     imageTitle.textContent = this._name;
     imageImg.alt = this._name;
     openPopup(popup);
-    document.addEventListener('keydown', this._closePressEsc)
   }
 }
