@@ -3,7 +3,7 @@ import FormValidator from './FormValidator.js';
 import {
   openPopup,
   closePopup
-} from './utils.js'
+} from './popup.js'
 
 initialCards.forEach((item) => {
   cardList.append(createCard(item.name, item.link))

@@ -1,7 +1,7 @@
 import {
   openPopup,
   closePopup
-} from './utils.js'
+} from './popup.js'
 
 export default class Card {
   constructor(name, link, templateCards) {
