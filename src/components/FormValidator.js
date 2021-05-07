@@ -1,3 +1,6 @@
+import {
+  selectors
+} from './constants.js'
 export default class FormValidator {
   constructor(data, formElement) {
     this._data = selectors;
@@ -42,7 +45,7 @@ export default class FormValidator {
     })
 
   }
-  // _hasInvalidInput = inputList => inputList.some(inputElement => !inputElement.validity.valid)
+
   _isValid(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage)

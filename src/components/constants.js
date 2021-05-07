@@ -1,16 +1,16 @@
 //template cards
-const templateCards = document.querySelector('.template-elements');
-const cardList = document.querySelector('.elements-list');
+export const templateCards = document.querySelector('.template-elements');
+export const cardList = document.querySelector('.elements-list');
 
 //popup
-const popupProfile = document.querySelector('.popup-profile');
-const popupMesto = document.querySelector('.popup-mesto');
-const openImage = document.querySelector('.popup-image');
+export const popupProfile = document.querySelector('.popup-profile');
+export const popupMesto = document.querySelector('.popup-mesto');
+export const openImage = document.querySelector('.popup-image');
 
 
 //open popup buttons
-const openProfileBtn = document.querySelector('.profile__edit-button');
-const openMestoBtn = document.querySelector('.profile__add-button');
+export const openProfileBtn = document.querySelector('.profile__edit-button');
+export const openMestoBtn = document.querySelector('.profile__add-button');
 
 //close popup buttons
 const closeProfileBtn = document.querySelector('.popup-profile__close');
@@ -18,8 +18,8 @@ const closeMestoBtn = document.querySelector('.popup-mesto__close');
 const closeImageBtn = document.querySelector('.popup-image__close');
 
 //form
-const formEditProfile = document.querySelector('.popup-profile__form');
-const formNewMesto = document.querySelector('.popup-mesto__form');
+export const formEditProfile = document.querySelector('.popup-profile__form');
+export const formNewMesto = document.querySelector('.popup-mesto__form');
 
 //form-input
 const userName = document.getElementById('userName');
@@ -28,18 +28,18 @@ const mestoName = document.getElementById('mestoName');
 const mestoLink = document.getElementById('mestoLink');
 
 //data profile
-const nameProfile = document.querySelector('.profile__name');
-const aboutProfile = document.querySelector('.profile__about');
+export const nameProfile = document.querySelector('.profile__name');
+export const aboutProfile = document.querySelector('.profile__about');
 
 //data Card
-const imageTitle = document.querySelector('.popup-image__title');
-const imageImg = document.querySelector('.popup-image__img');
+export const cardTitle = document.querySelector('.popup-image__title');
+export const cardImage = document.querySelector('.popup-image__img');
 
 //key
-const escape = 'Escape'
+export const escape = 'Escape'
 
 // form selectors
-const selectors = {
+export const selectors = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save',
@@ -49,7 +49,7 @@ const selectors = {
 };
 
 // first cards
-const initialCards = [{
+export const initialCards = [{
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
