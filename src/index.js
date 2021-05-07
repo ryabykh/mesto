@@ -1,3 +1,4 @@
+import './pages/index.css';
 import {
   initialCards,
   cardList,
@@ -13,13 +14,13 @@ import {
   popupMesto,
   openProfileBtn
 
-} from './constants.js'
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import Section from './Section.js';
-import PopupWithForm from './PopupWithForm.js';
-import PopupWithImage from './PopupWithImage.js';
-import UserInfo from './UserInfo.js'
+} from './components/constants.js'
+import Card from './components/Card.js';
+import FormValidator from './components/FormValidator.js';
+import Section from './components/Section.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import UserInfo from './components/UserInfo.js'
 
 //add default card from array
 const defaultCardList = new Section({
@@ -60,7 +61,6 @@ function handleSubmitCard(data) {
 //edit Profile
 const editProfile = new PopupWithForm(popupProfile, handleSubmitProfile);
 editProfile.setEventListeners();
-console.log(popupProfile)
 openProfileBtn.addEventListener('click', () => {
   disableButton(popupProfile);
   editProfile.open()
