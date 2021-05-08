@@ -53,7 +53,7 @@ function handleSubmitCard(data) {
   const card = new Card({
     name,
     link
-  }, templateCards, () => openPopupImage.open(data));
+  }, templateCards, () => openPopupImage.open({name, link}));
   const cardElement = card.generateCard();
   defaultCardList.newItem(cardElement);
 }
