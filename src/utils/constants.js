@@ -1,7 +1,3 @@
-//template cards
-export const templateCards = document.querySelector('.template-elements');
-export const cardList = document.querySelector('.elements-list');
-
 //popup
 export const popupProfile = document.querySelector('.popup-profile');
 export const popupMesto = document.querySelector('.popup-mesto');

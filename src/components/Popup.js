@@ -1,6 +1,6 @@
 import {
   escape
-} from './constants.js'
+} from '../utils/constants.js'
 export default class Popup {
   constructor(popupSelector) {
     this._popupElement = popupSelector;
