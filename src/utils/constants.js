@@ -1,7 +1,3 @@
-//template cards
-export const templateCards = document.querySelector('.template-elements');
-export const cardList = document.querySelector('.elements-list');
-
 //popup
 export const popupProfile = document.querySelector('.popup-profile');
 export const popupMesto = document.querySelector('.popup-mesto');
@@ -22,8 +18,8 @@ export const formEditProfile = document.querySelector('.popup-profile__form');
 export const formNewMesto = document.querySelector('.popup-mesto__form');
 
 //form-input
-const userName = document.getElementById('userName');
-const userAbout = document.getElementById('userAbout');
+export const userName = document.getElementById('userName');
+export const userAbout = document.getElementById('userAbout');
 const mestoName = document.getElementById('mestoName');
 const mestoLink = document.getElementById('mestoLink');
 

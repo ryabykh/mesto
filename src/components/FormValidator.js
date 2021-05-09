@@ -1,6 +1,6 @@
 import {
   selectors
-} from './constants.js'
+} from '../utils/constants.js'
 export default class FormValidator {
   constructor(data, formElement) {
     this._data = selectors;
@@ -17,18 +17,16 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-
-    this._toggleButtonState();
+    this.toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._isValid(inputElement);
-        this._toggleButtonState();
+        this.toggleButtonState();
       })
     })
   }
 
-  _toggleButtonState() {
-
+  toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
       this._buttonElement.setAttribute('disabled', true);
       this._buttonElement.classList.add(selectors.inactiveButtonClass);
@@ -39,11 +37,9 @@ export default class FormValidator {
   }
 
   _hasInvalidInput(inputList) {
-
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid
     })
-
   }
 
   _isValid(inputElement) {
