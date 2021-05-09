@@ -18,8 +18,8 @@ export const formEditProfile = document.querySelector('.popup-profile__form');
 export const formNewMesto = document.querySelector('.popup-mesto__form');
 
 //form-input
-const userName = document.getElementById('userName');
-const userAbout = document.getElementById('userAbout');
+export const userName = document.getElementById('userName');
+export const userAbout = document.getElementById('userAbout');
 const mestoName = document.getElementById('mestoName');
 const mestoLink = document.getElementById('mestoLink');
 

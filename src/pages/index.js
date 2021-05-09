@@ -8,8 +8,9 @@ import {
   popupProfile,
   openMestoBtn,
   popupMesto,
-  openProfileBtn
-
+  openProfileBtn,
+  userName,
+  userAbout
 } from '../utils/constants.js'
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -19,8 +20,8 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js'
 
 //template cards
-export const templateCards = document.querySelector('.template-elements');
-export const cardList = document.querySelector('.elements-list');
+const templateCards = document.querySelector('.template-elements');
+const cardList = document.querySelector('.elements-list');
 
 //add default card from array
 const defaultCardList = new Section({
@@ -44,15 +45,20 @@ openMestoBtn.addEventListener('click', () => {
 });
 
 function handleSubmitCard(data) {
-  const {mestoName: name, mestoLink: link} = data
-  addCard({name, link})
+  const {
+    mestoName: name,
+    mestoLink: link
+  } = data
+  addCard({
+    name,
+    link
+  })
 }
 
-function addCard(data){
-    const card = new Card(data, templateCards, () => openPopupImage.open(data));
-    const cardElement = card.generateCard();
-    defaultCardList.newItem(cardElement);
-
+function addCard(data) {
+  const card = new Card(data, templateCards, () => openPopupImage.open(data));
+  const cardElement = card.generateCard();
+  defaultCardList.addItem(cardElement);
 }
 
 //edit Profile
@@ -60,14 +66,17 @@ const editProfile = new PopupWithForm(popupProfile, handleSubmitProfile);
 editProfile.setEventListeners();
 openProfileBtn.addEventListener('click', () => {
   formProfile.toggleButtonState()
-  fillPopupProfile.getUserInfo()
+  const getDataProfile = fillPopupProfile.getUserInfo()
+  userName.value=getDataProfile.name;
+  userAbout.value=getDataProfile.about;
   editProfile.open()
-  });
-  
-const fillPopupProfile = new UserInfo(popupProfile)
+});
 
-function handleSubmitProfile() {
-  fillPopupProfile.setUserInfo()
+const dataProfile = {name: '.profile__name', about: '.profile__about'}
+const fillPopupProfile = new UserInfo(dataProfile)
+
+function handleSubmitProfile(data) {
+  fillPopupProfile.setUserInfo(data)
 }
 
 //add validation form
