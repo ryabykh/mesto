@@ -1,0 +1,8 @@
+.profile__avatar-edit {
+    width: 120px;
+    height: 120px;
+    box-sizing: border-box;
+    background-image: url('../../../images/editAvatar.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
