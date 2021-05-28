@@ -3,15 +3,20 @@ export default class Section {
         items,
         renderer
     }, containerSelector) {
-        console.log(items)
         this._renderedItems = items;
         this._renderer = renderer;
         this._container = containerSelector;
     }
 
-    renderItems() {
-        this._renderedItems.forEach((item) => {
+    renderItem(item) {
             this._renderer(item)
+    }
+
+    renderItems() {
+
+
+      this._renderedItems.reverse().forEach(item => {
+          this._renderer({ name: item.name, link: item.link, _id: item._id, owner: item.owner._id, ownerId: item.owner._id, likes: item.likes });
         })
     }
 

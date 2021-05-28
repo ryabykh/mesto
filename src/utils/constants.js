@@ -21,8 +21,8 @@ export const formRemoveCard = document.querySelector('.popup-remove-card__form')
 export const userName = document.getElementById('userName');
 export const userAbout = document.getElementById('userAbout');
 export const inputAvatar = document.getElementById('userAvatar');
-const mestoName = document.getElementById('mestoName');
-const mestoLink = document.getElementById('mestoLink');
+export const mestoName = document.getElementById('mestoName');
+export const mestoLink = document.getElementById('mestoLink');
 
 //data profile
 export const nameProfile = document.querySelector('.profile__name');

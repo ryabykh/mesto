@@ -26,6 +26,7 @@
 @import url("../blocks/element/__like-wrap/element__like-wrap.css");
 @import url("../blocks/element/__like/_active/element__like_active.css");
 @import url("../blocks/element/__remove/element__remove.css");
+@import url("../blocks/element/__remove/_active/element__remove_active.css");
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__copyrigth/footer__copyrigth.css");
 @import url("../blocks/popup/popup.css");
