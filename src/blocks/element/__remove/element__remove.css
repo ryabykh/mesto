@@ -9,6 +9,7 @@
   border: none;
   transition: opacity .1s;
   background-color: rgba(0, 0, 0, 0);
+  visibility: hidden;
 }
 
 .element__remove:hover{
