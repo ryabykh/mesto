@@ -14,7 +14,7 @@ export default class Card {
     this._addLike = addLike;
     this._removeLike = removeLike;
     this._ownerId = data.ownerId;
-		this._owner = data.owner;
+    this._owner = data.owner;
     this._cardId = data._id;
 
   }
@@ -35,10 +35,8 @@ export default class Card {
     elementImage.src = this._link;
     elementImage.alt = this._name;
     elementImage.id = this._cardId;
-    // const elementLike = this._element.querySelector('.element__like-count');
-    // elementLike.textContent = this._likes.length;
     this._counter = this._element.querySelector('.element__like-count');
-		this._counter.textContent = this._likes.length;
+    this._counter.textContent = this._likes.length;
     this._showLike();
     this._showTrash();
 
@@ -51,7 +49,6 @@ export default class Card {
     this._element.querySelector('.element__image').addEventListener('click', () => {
       this._handleCardClick(this._name, this._link)
     });
-    // removeButton.addEventListener('click', this._removeCard.bind(this));
     removeButton.addEventListener('click', () => this._deleteCard());
     this._likeButton.addEventListener('click', () => {
       if (this._likeButton.classList.contains('element__like_active')) {
@@ -70,26 +67,26 @@ export default class Card {
   }
 
   _likeCard() {
-  	this._likeButton.classList.toggle('element__like_active');
-	}
+    this._likeButton.classList.toggle('element__like_active');
+  }
 
   setLikesCounter(data) {
     this._counter = this._element.querySelector('.element__like-count');
     this._counter.textContent = data.likes.length;
-	}
+  }
 
   _showTrash() {
-		this._cardRemove = this._element.querySelector('.element__remove');
-			if (this._ownerId ===  this._user._id) {
-			this._cardRemove.classList.toggle('element__remove_active');
-		}
-	}
+    this._cardRemove = this._element.querySelector('.element__remove');
+    if (this._ownerId === this._user._id) {
+      this._cardRemove.classList.toggle('element__remove_active');
+    }
+  }
 
   _showLike() {
-		this._likes.forEach(element => {
-			if (element._id === this._user._id) {
-				this._likeCard();
-			}
-		});
-	}
+    this._likes.forEach(element => {
+      if (element._id === this._user._id) {
+        this._likeCard();
+      }
+    });
+  }
 }

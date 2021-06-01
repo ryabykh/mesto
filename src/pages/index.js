@@ -62,8 +62,8 @@ Promise.all([
     console.log(err);
   })
 
-  function renderingCards(data, user) {
-    const defaultCardList = new Section({
+function renderingCards(data, user) {
+  const defaultCardList = new Section({
       items: data,
       renderer: (item) => {
         const card = createCard(item, user);
@@ -72,54 +72,38 @@ Promise.all([
       }
     },
     cardList);
-    return defaultCardList
-  }
+  return defaultCardList
+}
 
 function createCard(data, userId) {
-  // console.log(data)
   const newCard = new Card(
     data,
     userId,
     templateCards,
-    () => openPopupImage.open(data),
-    {
-			deleteCard: () => {
-				const popupSubmit = new PopupWithForm({
-					popupSelector: popupRemoveCard,
-					handleSubmitForm: () => {
-						const apiRemoveCard = api.removeCard(data);
-						apiRemoveCard.then(() => {
-							newCard.removeCard();
-							popupSubmit.close();
-						})
-							.catch((err) => {
-								console.log(`Ошибка: ${err}`);
-							});
-					}
-				});
-				popupSubmit.open();
-				popupSubmit.setEventListeners();
-			},
-			addLike: () => {
-
-				const apiLikeCard = api.addLike(newCard);
-				apiLikeCard.then((data) => {
-          newCard.setLikesCounter(data);
-				})
-					.catch((err) => {
-						console.log(`Ошибка: ${err}`);
-					});
-			},
-			removeLike: () => {
-				const apiRemoveLike = api.removeLikes(newCard);
-				apiRemoveLike.then((data) => {
-					newCard.setLikesCounter(data);
-				})
-					.catch((err) => {
-						console.log(`Ошибка: ${err}`);
-					});
-			}
-		});
+    () => openPopupImage.open(data), {
+      deleteCard: () => {
+        popupSubmit.open();
+        popupSubmit.getCard(newCard);
+      },
+      addLike: () => {
+        const apiLikeCard = api.addLike(newCard);
+        apiLikeCard.then((data) => {
+            newCard.setLikesCounter(data);
+          })
+          .catch((err) => {
+            console.log(`Ошибка: ${err}`);
+          });
+      },
+      removeLike: () => {
+        const apiRemoveLike = api.removeLikes(newCard);
+        apiRemoveLike.then((data) => {
+            newCard.setLikesCounter(data);
+          })
+          .catch((err) => {
+            console.log(`Ошибка: ${err}`);
+          });
+      }
+    });
 
   return newCard
 }
@@ -128,21 +112,40 @@ const openPopupMesto = new PopupWithForm({
   popupSelector: popupMesto,
   handleSubmitForm: () => {
     openPopupMesto.renderLoading(true);
-		const apiNewCard = api.addCard({
-			name: mestoName.value,
-			link: mestoLink.value,
-		})
+    const apiNewCard = api.addCard({
+      name: mestoName.value,
+      link: mestoLink.value,
+    })
     apiNewCard.then((data) => {
-      openPopupMesto.renderLoading(false);
-			const newCard = renderingCards(data, data.owner._id);
-			newCard.renderItem(data, data.owner._id);
-			openPopupMesto.close();
-		})
-			.catch((err) => {
-				console.log(`Ошибка: ${err}`);
-			})
-	}
-  })
+        const newCard = renderingCards(data, data.owner._id);
+        newCard.renderItem(data, data.owner._id);
+        openPopupMesto.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        openPopupMesto.renderLoading(false)
+      })
+  }
+})
+
+const popupSubmit = new PopupWithConfirm({
+  popupSelector: popupRemoveCard,
+  handleSubmitForm: (data) => {
+    console.log(data)
+    const apiRemoveCard = api.removeCard(data);
+    apiRemoveCard.then(() => {
+        data.removeCard();
+        popupSubmit.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
+  }
+});
+
+popupSubmit.setEventListeners();
 
 //preview Image
 const openPopupImage = new PopupWithImage(openImage);
@@ -152,41 +155,48 @@ openPopupImage.setEventListeners();
 const userInfo = new UserInfo({
   name: nameProfile,
   about: aboutProfile,
-  avatar: avatarProfile})
+  avatar: avatarProfile
+})
 
 const editProfile = new PopupWithForm({
-	popupSelector: popupProfile,
-	handleSubmitForm: () => {
-		editProfile.renderLoading(true);
-		const apiEditUser = api.editProfile({
-			name: userName.value,
-			about: userAbout.value
-		});
-		apiEditUser.then((data) => {
-			userInfo.setUserInfo(data);
-			editProfile.renderLoading(false)
-			editProfile.close();
-		})
-			.catch((err) => {
-				console.log(`Ошибка: ${err}`);
-			})
-	}
+  popupSelector: popupProfile,
+  handleSubmitForm: () => {
+    editProfile.renderLoading(true);
+    const apiEditUser = api.editProfile({
+      name: userName.value,
+      about: userAbout.value
+    });
+    apiEditUser.then((data) => {
+        userInfo.setUserInfo(data);
+        editProfile.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        editProfile.renderLoading(false)
+      })
+  }
 });
 
 const editAvatar = new PopupWithForm({
   popupSelector: popupAvatar,
   handleSubmitForm: () => {
     editAvatar.renderLoading(true);
-		const apiUser = api.editAvatar({avatar: inputAvatar.value});
-		apiUser.then((data) => {
-			const userData = userInfo.getUserInfo(data);
-			userInfo.saveUserInfo(userData, nameProfile, aboutProfile, avatarProfile);
-			editAvatar.renderLoading(false);
-			editAvatar.close();
-		})
-			.catch((err) => {
-				console.log(`Ошибка: ${err}`);
-			})
+    const apiUser = api.editAvatar({
+      avatar: inputAvatar.value
+    });
+    apiUser.then((data) => {
+        const userData = userInfo.getUserInfo(data);
+        userInfo.saveUserInfo(userData, nameProfile, aboutProfile, avatarProfile);
+        editAvatar.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        editAvatar.renderLoading(false)
+      })
   }
 });
 
@@ -200,17 +210,17 @@ editProfile.setEventListeners();
 openProfileBtn.addEventListener('click', () => {
   formProfile.toggleButtonState()
   const apiUser = api.getUserInfo();
-	apiUser.then((data) => {
-		const userData = userInfo.getUserInfo(data);
-		userInfo.saveUserInfo(userData, nameProfile, aboutProfile, avatarProfile);
-		userName.value = nameProfile.textContent;
-		userAbout.value = aboutProfile.textContent;
-		editProfile.open();
-		editProfile.setEventListeners();
-	})
-		.catch((err) => {
-			console.log(`Ошибка: ${err}`);
-		})
+  apiUser.then((data) => {
+      const userData = userInfo.getUserInfo(data);
+      userInfo.saveUserInfo(userData, nameProfile, aboutProfile, avatarProfile);
+      userName.value = nameProfile.textContent;
+      userAbout.value = aboutProfile.textContent;
+      editProfile.open();
+      editProfile.setEventListeners();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
 });
 
 editAvatar.setEventListeners();
@@ -218,4 +228,3 @@ editAvatarBtn.addEventListener('click', () => {
   formAvatar.toggleButtonState()
   editAvatar.open()
 })
-
